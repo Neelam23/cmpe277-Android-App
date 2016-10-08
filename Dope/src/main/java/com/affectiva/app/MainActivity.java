@@ -21,6 +21,7 @@ import com.affectiva.android.affdex.sdk.detector.Face;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
     float smileDegree= (float) 0.00;
     String ageRange= "";
     int meanAge= 0;
-    String ethinicity="";
+    String ethnicity="";
     //neelam changes ends
 
 
@@ -171,7 +172,7 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
             smileDegree= (float) 0.00;
             ageRange= "";
             meanAge= 0;
-            ethinicity="";
+            ethnicity="";
             detector.start();
         }
     }
@@ -193,7 +194,7 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
         Log.d("cmpe277: smileDegree", String.valueOf(smileDegree));
         Log.d("cmpe277: ageRange", ageRange);
         Log.d("cmpe277: age", String.valueOf(meanAge));
-        Log.d("cmpe277: ethinicity", ethinicity);
+        Log.d("cmpe277: ethinicity", ethnicity);
 
         JSONObject jsonObject = new JSONObject();
         try{
@@ -201,7 +202,7 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
             jsonObject.put("emotion", "Happy");
             jsonObject.put("degree", String.valueOf(smileDegree));
             jsonObject.put("age", String.valueOf(meanAge));
-            jsonObject.put("ethinicity", ethinicity);
+            jsonObject.put("ethnicity", ethnicity);
             Log.d("jsonObject String :",jsonObject.toString());
 
 
@@ -232,7 +233,7 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
         } else {
             Face face = list.get(0);
             smileTextView.setText(String.format("SMILE\n%.2f",face.expressions.getSmile()));
-            smileDegree= face.expressions.getSmile();
+            smileDegree= Math.round(face.expressions.getSmile());
             switch (face.appearance.getAge()) {
                 case AGE_UNKNOWN:
                     ageTextView.setText("");
@@ -277,27 +278,27 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
             switch (face.appearance.getEthnicity()) {
                 case UNKNOWN:
                     ethnicityTextView.setText("");
-                    ethinicity = "";
+                    ethnicity = "";
                     break;
                 case CAUCASIAN:
                     ethnicityTextView.setText(R.string.ethnicity_caucasian);
-                    ethinicity = "Caucasian";
+                    ethnicity = "Caucasian";
                     break;
                 case BLACK_AFRICAN:
                     ethnicityTextView.setText(R.string.ethnicity_black_african);
-                    ethinicity = "African";
+                    ethnicity = "African";
                     break;
                 case EAST_ASIAN:
                     ethnicityTextView.setText(R.string.ethnicity_east_asian);
-                    ethinicity = "East Asian";
+                    ethnicity = "East Asian";
                     break;
                 case SOUTH_ASIAN:
                     ethnicityTextView.setText(R.string.ethnicity_south_asian);
-                    ethinicity = "South Asian";
+                    ethnicity = "South Asian";
                     break;
                 case HISPANIC:
                     ethnicityTextView.setText(R.string.ethnicity_hispanic);
-                    ethinicity = "Hispanic";
+                    ethnicity = "Hispanic";
                     break;
             }
 
