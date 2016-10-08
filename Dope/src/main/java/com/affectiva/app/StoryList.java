@@ -64,7 +64,7 @@ public class StoryList extends Activity {
         mListView.setAdapter(adapter);
 
         progDialog = new ProgressDialog(this);
-        progDialog.setMessage("Loading...");
+        progDialog.setMessage("LoadStoryDetail...");
         progDialog.setCancelable(false);
 
         makeJsonRequest();

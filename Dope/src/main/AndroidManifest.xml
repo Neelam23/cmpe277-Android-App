@@ -27,11 +27,11 @@
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:label="Dope" >
         </activity>
-        <!--activity
-            android:name="com.affectiva.app.Loading"
+        <activity
+            android:name="com.affectiva.app.LoadStoryDetails"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:label="Dope" >
-        </activity-->
+        </activity>
         <activity
             android:name="com.affectiva.app.StoryList"
             android:configChanges="keyboardHidden|screenSize|orientation"
