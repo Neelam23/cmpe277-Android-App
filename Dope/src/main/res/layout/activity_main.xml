@@ -21,8 +21,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:padding="5dp"
-        android:textOff="FRONT"
-        android:textOn="BACK" />
+        android:textOff="Back Camera"
+        android:textOn="Front Camera" />
 
     <Button
         android:id="@+id/surfaceview_visibility_button"

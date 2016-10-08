@@ -210,7 +210,7 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(this, StoryList.class);
+        Intent intent = new Intent(this, StoryList.class); //for main activity only this is required
         intent.putExtra("jsonObjectString", jsonObject.toString());
         startActivity(intent);
     }

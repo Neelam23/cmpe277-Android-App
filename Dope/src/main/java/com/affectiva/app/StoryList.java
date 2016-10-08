@@ -2,10 +2,14 @@ package com.affectiva.app;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,6 +30,7 @@ public class StoryList extends Activity {
 
     private static String TAG = StoryList.class.getSimpleName();
 
+    //http://api.androidhive.info/json/movies.json
     private String urlJsonArry = "http://api.androidhive.info/json/movies.json";
     ListView mListView;
     private List<News> newsList = new ArrayList<News>();
@@ -42,14 +47,14 @@ public class StoryList extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storylist);
 
-        //neelam changes start
+        //neelam changes starts
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String jsonString = getIntent().getStringExtra("jsonObjectString");
             try {
 
                 JSONObject jsonObj = new JSONObject(jsonString);
-                Log.d("neelam json received:", jsonObj.toString());
+                Log.d("Json Received:", jsonObj.toString());
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
@@ -72,14 +77,20 @@ public class StoryList extends Activity {
 
 
 
-       /* mListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String Slecteditem = newsArray[+position];
-                Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
-            }
+       mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               News Slecteditem = newsList.get(+position);
+               Toast.makeText(getApplicationContext(), Slecteditem.getTitle(), Toast.LENGTH_LONG).show();
+              // Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
+               Log.d("Neelam get title:",Slecteditem.getTitle());
 
-        });*/
+               Intent intent = new Intent(StoryList.this, LoadStoryDetails.class);
+               intent.putExtra("title", Slecteditem.getTitle());
+               startActivity(intent);
+           }
+
+       });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -129,7 +140,7 @@ public class StoryList extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("Neeelam", error.getMessage());
+                VolleyLog.d("Error:", error.getMessage());
                 hideDialog();
 
             }
