@@ -11,7 +11,7 @@ import android.app.Activity;
  */
 public class SplashScreen extends Activity {
 
-    public static int spalsh_Screen_Delay = 3000;
+    public static int spalsh_Screen_Delay = 4000;
     EditText input;
     int MY_PERMISSIONS_REQUEST_CAMERA;
 
