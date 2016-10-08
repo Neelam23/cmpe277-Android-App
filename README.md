@@ -1,3 +1,6 @@
+Dope: Android Application
+--using Affectiva SDK
+
 # Affdex Android Sample Apps
 
 These sample projects are Android Studio projects.  To use them, you need to:
